@@ -15,7 +15,7 @@ airflow/git_version
 airflow/www/static/coverage/
 airflow/www/static/dist
 
-/logs/
+#/logs/
 airflow-webserver.pid
 
 # Byte-compiled / optimized / DLL files
