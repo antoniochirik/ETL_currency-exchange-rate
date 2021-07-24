@@ -9,7 +9,7 @@ DWH and ETL.
 * ###### Docker
 
 * ###### Docker-compose
-___
+  _ATTENTION: You need the latest version of docker-compose!_
 
 ## Getting Started
 
@@ -25,20 +25,18 @@ These instructions will get you a copy of the project up and running on your loc
 
 Documentation of exchangeratesapi.io: https://exchangeratesapi.io/documentation/
    
-4. Insert your access key into ./Dockerfile
+4. Insert your access key into ./.env file
 
-        ENV EXCHANGE_RATE_ACCESS_KEY <your_access_key>
+        EXCHANGE_RATE_ACCESS_KEY=<your_access_key>
 
 5. Build the docker containers:
 
         docker-compose up --build
-___
 
 ## Mysql database diagram
 
 You can see structure of currency_exchange_rate database on diagram_currency_exchange_rate.pdf
 
-___
 ## Mysql database on your computer
 
 If you don't want to use DB in the container, you can use your local mysql server.
@@ -49,13 +47,12 @@ From ./mysql_db run:
 
     mysql -uUSER -pPASSWORD -f currency_exchange_rate < dump.sql
 
-2. Change environment variable in ./Dockerfile:
+2. Change environment variable in ./.env:
    
-        ENV CURRENCY_MYSQL_CONN mysql+pymysql://<username>:<password>@localhost:<port>/currency_exchange_rate
+        CURRENCY_MYSQL_CONN=mysql+pymysql://<username>:<password>@localhost:<port>/currency_exchange_rate
 
 3. _Also, you can remove mysql service from docker-compose.yaml_
 _(This will save from running an extra container)_
-___
 
 ## UI Link
 
@@ -63,11 +60,19 @@ ___
 Standard username and password for airflow:
 * username: airflow 
 * password: airflow
-___
 
 ## Problems:
 
-You may have some problems with /logs/ directory.
+If you have not the latest version of docker-compose, you may catch error:
+
+    ERROR: The Compose file './docker-compose.yaml' is invalid because:
+    Invalid top-level property "x-airflow-common". Valid top-level sections for this Compose file are: version, services, networks, volumes, and extensions starting with "x-".
+
+You need to upgrade docker-compose.
+How to upgrade: https://stackoverflow.com/questions/49839028/how-to-upgrade-docker-compose-to-latest-version
+
+---
+Also, you may have some problems with /logs/ directory.
 
 If you have 
 
