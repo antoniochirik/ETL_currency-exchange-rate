@@ -6,12 +6,12 @@ DWH and ETL.
 
 ## Requirements
 
-* ###### Docker
+* ###### Docker: version 20.10 or higher
 
-* ###### Docker-compose
-  _ATTENTION: You need the latest version of docker-compose!_
+* ###### Docker-compose: version 1.27 or higher
+___
 
-## Getting Started
+## Get Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -29,7 +29,12 @@ Documentation of exchangeratesapi.io: https://exchangeratesapi.io/documentation/
 
         EXCHANGE_RATE_ACCESS_KEY=<your_access_key>
 
-5. Build the docker containers:
+5. Make directories with:
+
+        mkdir ./dags ./logs ./plugins
+        echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+
+6. Build the docker containers:
 
         docker-compose up --build
 
@@ -70,13 +75,3 @@ If you have not the latest version of docker-compose, you may catch error:
 
 You need to upgrade docker-compose.
 How to upgrade: https://stackoverflow.com/questions/49839028/how-to-upgrade-docker-compose-to-latest-version
-
----
-Also, you may have some problems with /logs/ directory.
-On Linux, the mounted volumes in container use the native Linux filesystem user/group permissions, so you have to make sure the container and host computer have matching file permissions.
-
-If you have 
-
-    'ValueError' Unable to configure handler 'processor': [Errno 13] Permission denied: '/opt/airflow/logs/scheduler'
-
-enter the command `chmod -R 777 logs/` into terminal (out of containers).
