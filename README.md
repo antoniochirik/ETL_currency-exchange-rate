@@ -45,7 +45,7 @@ Documentation of exchangeratesapi.io: https://exchangeratesapi.io/documentation/
 
 * Open Docker Desktop
 * Go to settings -> resources -> file sharing
-* Press '+' and add directories: logs/, plugins/, dags/, docker/db/data/
+* Press '+' and add directories: logs/, plugins/, dags/
 
 7. Build the docker containers:
 
