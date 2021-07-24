@@ -73,6 +73,7 @@ How to upgrade: https://stackoverflow.com/questions/49839028/how-to-upgrade-dock
 
 ---
 Also, you may have some problems with /logs/ directory.
+On Linux, the mounted volumes in container use the native Linux filesystem user/group permissions, so you have to make sure the container and host computer have matching file permissions.
 
 If you have 
 
