@@ -4,7 +4,6 @@ import requests
 
 from airflow import DAG
 from airflow.decorators import task
-from airflow.operators.python_operator import PythonOperator
 from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -35,7 +34,7 @@ DB_EXCEPTION = 'Проблема с подключением к базе {ex}'
 
 def create_db_connection():
     """ Database connection """
-    Base = declarative_base()
+    base = declarative_base()
     try:
         engine = create_engine(DB_URL)
         metadata = MetaData(bind=engine)
@@ -45,8 +44,8 @@ def create_db_connection():
     except Exception as ex:
         raise Exception(DB_EXCEPTION.format(ex=ex))
 
-    # mapping Base class and DB table euro_rate
-    class EuroRate(Base):
+    # mapping base class and DB table euro_rate
+    class EuroRate(base):
         __table__ = Table('euro_rate', metadata, autoload=True)
 
     return EuroRate, session
@@ -83,7 +82,7 @@ def request_to_site(request_params):
         response = requests.get(EURO_RATE_URL,
                                 params=request_params)
     except requests.RequestException as ex:
-        raise Exception(REQUEST_EXEPTION.format(ex=ex))
+        raise Exception(REQUEST_EXCEPTION.format(ex=ex))
     return response
 
 
