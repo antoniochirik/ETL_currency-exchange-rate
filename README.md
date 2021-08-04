@@ -32,20 +32,20 @@ Documentation of exchangeratesapi.io: https://exchangeratesapi.io/documentation/
 5. Make directories with:
 
 
-         mkdir ./dags ./logs ./plugins
+         mkdir ./docker ./logs ./plugins
 
 
 6.1 If Linux is your OS:
 
 * make directories with:
 
-        echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+        echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" >> .env
 
 6.2 If Windows is your OS:
 
 * Open Docker Desktop
 * Go to settings -> resources -> file sharing
-* Press '+' and add directories: logs/, plugins/, dags/
+* Press '+' and add directories: logs/, plugins/, docker/
 
 7. Build the docker containers:
 
